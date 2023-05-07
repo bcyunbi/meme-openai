@@ -2,7 +2,6 @@ import Link from 'next/link'
 import '../styles/global.css'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [path, setPath] = useState('/')
