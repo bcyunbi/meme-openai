@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { fetchGiphyApi } from './api/get-giphy'
 
 export default function MyPage() {
@@ -20,10 +20,10 @@ export default function MyPage() {
       body: JSON.stringify({ prompt: prompt }),
     })
     const data = await response.json()
+    setAnswer(data.text.trim())
     const modifiedText = data.text.replace(/[\n,]+/g, ',')
     const gifs = await fetchGiphyApi(modifiedText)
     setGifs(gifs)
-    setAnswer(data.text.trim())
     setIsLoading(false)
   }
 
@@ -31,21 +31,20 @@ export default function MyPage() {
     setPrompt(e.target.value)
   }
 
-  useEffect(() => {
-    // console.log('OPENAI_API_KEY', process.env.GIPHY_API_KEY)
-  }, [])
   return (
     <div className='container'>
-      <h3>Enter Describe</h3>
-      <form className='our-form' onSubmit={handleSubmit}>
+      <div>Enter Describe</div>
+      <form className='form' onSubmit={handleSubmit}>
         <input className='prompt-field' type='text' onChange={handleChange} />
-        <button className='prompt-button'>Find</button>
+        <button className='prompt-button' disabled={isLoading}>
+          Find
+        </button>
       </form>
 
       {isLoading && <div className='loading-spinner'></div>}
-      {/* <div className='answer-area'>{answer}</div> */}
+      <div className='answer-area'>{answer}</div>
       {gifs.length > 0 && (
-        <ul>
+        <ul className='gif-list'>
           {gifs.map((gif) => (
             <li key={gif.id}>
               <img
