@@ -31,10 +31,7 @@ export default function MyPage() {
       <div>Meme Painting!</div>
       <form className='form' disabled={true} onSubmit={handleSubmit}>
         <input className='prompt-field' type='text' onChange={handleChange} />
-        <button className='prompt-button' disabled={true}>
-          Painting
-        </button>
-        <button disabled={true}>
+        <button className='prompt-button' disabled={isLoading}>
           Painting
         </button>
       </form>
