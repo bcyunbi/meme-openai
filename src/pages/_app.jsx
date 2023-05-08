@@ -2,6 +2,9 @@ import Link from 'next/link'
 import '../styles/global.css'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import * as React from 'react'
+import { p5background } from '../components/background'
+import { NextReactP5Wrapper } from '@p5-wrapper/next'
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const [path, setPath] = useState('/')
@@ -22,6 +25,18 @@ export default function MyApp({ Component, pageProps }) {
         })}
       </div>
       <Component {...pageProps} />
+      <div
+        style={{
+          zIndex: '-1',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+        }}
+      >
+        <NextReactP5Wrapper sketch={p5background} />
+      </div>
     </>
   )
 }
