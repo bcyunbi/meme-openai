@@ -44,17 +44,13 @@ export default function MyPage() {
       {isLoading && <div className='loading-spinner'></div>}
       <div className='answer-area'>{answer}</div>
       {gifs.length > 0 && (
-        <ul className='gif-list'>
+        <div className='gif-list'>
           {gifs.map((gif) => (
-            <li key={gif.id}>
-              <img
-                src={gif.images.downsized_medium.url}
-                alt={gif.id}
-                width={100}
-              />
-            </li>
+            <div key={gif.id} style={{ width: '200px' }}>
+              <img src={gif.images.downsized_medium.url} alt={gif.id} />
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )

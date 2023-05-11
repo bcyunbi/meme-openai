@@ -173,8 +173,11 @@ body {
 }
 
 .gif-list {
-  padding: 0px;
-  list-style-type: none;
+display: inline-flex;
+align-items: center;
+justify-content: space-around;
+width: 100%;  
+gap: 5px;
 }
 
 canvas {
