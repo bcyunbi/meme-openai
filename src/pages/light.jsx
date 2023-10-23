@@ -1,17 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
 export default function Light() {
+  const spaceRef = useRef(null);
+  const perspectiveRef = useRef(100); // 初始透视值
+  const perspectiveStep = 10; // 滚轮每次滚动的透视变化量
+  const minPerspective = 30; // 最小透视值
   useEffect(() => {
     // 获取空间元素
     const space = document.getElementById("space");
 
     // 设置视口尺寸
     function setSpaceSize() {
-      const viewportWidth = window.innerWidth;
-      const viewportHeight = window.innerHeight;
+      const viewportWidth = window.innerWidth - 56;
+      const viewportHeight = window.innerHeight - 100;
       space.style.width = `${viewportWidth}px`;
       space.style.height = `${viewportHeight}px`;
+      const maxPerspective = window.innerHeight - 100; // 最大透视值
 
       const perspective = 80;
       space.style.setProperty("--perspective", `${perspective}px`);
@@ -45,7 +50,7 @@ export default function Light() {
           translateY(${starHeight / 2}px)
           rotate(${randomRotation}deg)
           rotateX(90deg)
-          translateZ(${perspective + visibleRangeMaximum}px)
+          translateZ(${perspectiveRef.current + visibleRangeMaximum}px)
           scaleX(${scaleModifier})
         `,
             repeat: -1,
@@ -55,7 +60,24 @@ export default function Light() {
 
         space.appendChild(star);
       }
+      function handleMouseWheel(event) {
+        if (event.deltaY > 0) {
+          // 向下滚动
+          perspectiveRef.current += perspectiveStep;
+        } else {
+          // 向上滚动
+          perspectiveRef.current -= perspectiveStep + 30; // 减小透视值
+        }
+        perspectiveRef.current = Math.max(
+          minPerspective,
+          Math.min(maxPerspective, perspectiveRef.current)
+        );
 
+        // 更新透视值
+        space.style.setProperty("--perspective", `${perspectiveRef.current}px`);
+      }
+
+      window.addEventListener("wheel", handleMouseWheel);
       for (let i = 0; i < 120; i++) {
         makeStar();
       }
@@ -68,5 +90,5 @@ export default function Light() {
     window.addEventListener("resize", setSpaceSize);
   }, []);
 
-  return <div id="space"></div>;
+  return <div id="space" ref={spaceRef}></div>;
 }
