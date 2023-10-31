@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "../styles/global.css";
 import "@/styles/light.css";
-
+import "@/styles/wormhole.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import * as React from "react";
@@ -27,6 +27,11 @@ export default function MyApp({ Component, pageProps }) {
         })}
       </div>
       <Component {...pageProps} />
+      {path === "/wormhole" && (
+        <div
+          style={{ width: "100%", height: "1000px", background: "#3799e970" }}
+        ></div>
+      )}
       <div
         style={{
           zIndex: "-1",
@@ -46,5 +51,6 @@ export default function MyApp({ Component, pageProps }) {
 const links = [
   { href: "/", label: "Text" },
   { href: "/paint", label: "paint" },
-  { href: "light", label: "light" },
+  { href: "/light", label: "light" },
+  { href: "/wormhole", label: "wormhole" },
 ];

@@ -1,0 +1,13 @@
+<svg width="600" height="600" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" stroke="white" stroke-width="1">
+<rect x="0" y="0" width="600" height="600"/>
+<line y1="100" x2="600" y2="100"/>
+<line y1="200" x2="600" y2="200"/>
+<line y1="300" x2="600" y2="300"/>
+<line y1="400" x2="600" y2="400"/>
+<line y1="500" x2="600" y2="500"/>
+<line x1="100" y1="600" x2="100"/>
+<line x1="200" y1="600" x2="200"/>
+<line x1="300" y1="600" x2="300"/>
+<line x1="500" y1="600" x2="500"/>
+<line x1="400" y1="600" x2="400"/>
+</svg>

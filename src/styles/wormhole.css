@@ -1,0 +1,281 @@
+.wormhole {
+  --position: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.083);
+  width: 100%;
+}
+
+.wormhole .wormhole-inner {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  height: 100vh;
+  -webkit-perspective: 250px;
+  -moz-perspective: 250px;
+  -ms-perspective: 250px;
+  perspective: 250px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.p-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.wormhole .wormhole-main {
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: var(--position);
+  -ms-transform: var(--position);
+  transform: var(--position);
+  will-change: transform;
+}
+
+.wormhole .wormhole-step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  will-change: transform;
+  -webkit-transform: translateZ(var(--offset));
+  -ms-transform: translateZ(var(--offset));
+  transform: translateZ(var(--offset));
+}
+
+.wormhole .wormhole-step a {
+  pointer-events: auto;
+}
+
+.wormhole .wormhole-step__content {
+  position: absolute;
+  display: inline-block;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.wormhole .wormhole-step__content__full {
+  padding: min(5%, 40px);
+  top: 0;
+}
+
+.wormhole .wormhole-step__title {
+  font-size: 5vw;
+  font-weight: 500;
+  color: #fff;
+}
+
+.wormhole .wormhole-step:nth-of-type(1) .wormhole-step__text,
+.wormhole .wormhole-step:nth-of-type(5) .wormhole-step__text {
+  bottom: 0;
+}
+
+.wormhole .wormhole-step:nth-of-type(2) .wormhole-step__text,
+.wormhole .wormhole-step:nth-of-type(6) .wormhole-step__text {
+  right: 0;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.wormhole .wormhole-step:nth-of-type(3) .wormhole-step__text,
+.wormhole .wormhole-step:nth-of-type(7) .wormhole-step__text {
+  top: 0;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.wormhole .wormhole-step:nth-of-type(4) .wormhole-step__text {
+  left: 0;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.wormhole .wormhole-step__text {
+  text-align: center;
+  width: 100%;
+}
+
+.wormhole .wormhole-step .contentCube {
+  position: absolute;
+  background-color: "black";
+  padding: 30px;
+}
+
+.wormhole .wormhole-step .contentCube::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border: currentColor 1px solid;
+}
+
+.wormhole .wormhole-step .contentCube::after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+  border: currentColor 1px solid;
+}
+
+.wormhole .wormhole-step .contentCube__top {
+  top: 0;
+}
+
+.wormhole .wormhole-step .contentCube__top::after {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  -webkit-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  transform-origin: bottom;
+  -webkit-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+}
+
+.wormhole .wormhole-step .contentCube__left {
+  left: 0;
+  top: 50%;
+  min-height: 16.7vh;
+}
+
+.wormhole .wormhole-step .contentCube__left::after {
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  border-right: none;
+  -webkit-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+}
+
+.wormhole .wormhole-step img,
+.wormhole .wormhole-step video {
+  max-width: 600px;
+}
+
+.wormhole .wormhole-wall {
+  position: absolute;
+  background-image: url(../image/svg-grid.svg);
+  background-size: 100% 100%;
+  width: 100%;
+}
+
+.wormhole .wormhole-wall__top {
+  -webkit-transform: rotateX(-90deg);
+  -ms-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  -webkit-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+  height: var(--depth);
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.wormhole .wormhole-wall__right {
+  -webkit-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+  width: var(--depth);
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+
+.wormhole .wormhole-wall__bottom {
+  -webkit-transform: rotateX(90deg);
+  -ms-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: bottom;
+  -ms-transform-origin: bottom;
+  transform-origin: bottom;
+  height: var(--depth);
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.wormhole .wormhole-wall__left {
+  -webkit-transform: rotateY(90deg);
+  -ms-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
+  transform-origin: left;
+  width: var(--depth);
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.t-stroke {
+  font-weight: 700;
+  letter-spacing: 0;
+  -webkit-text-stroke: 1px #fff;
+}
+.t-stroke a {
+  position: relative;
+  color: #fff;
+  -webkit-text-stroke: transparent;
+}
+.t-stroke a:after {
+  content: "";
+  position: absolute;
+  bottom: 13%;
+  left: -1px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+}
+@media screen and (max-width: 600px) {
+  .t-stroke {
+    -webkit-text-stroke-width: 0.5px;
+  }
+}
