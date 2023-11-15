@@ -26,12 +26,12 @@ export default function MyApp({ Component, pageProps }) {
           );
         })}
       </div>
-      <Component {...pageProps} />
-      {path === "/wormhole" && (
-        <div
-          style={{ width: "100%", height: "1000px", background: "#3799e970" }}
-        ></div>
-      )}
+      <div className="component">
+        <Component {...pageProps} />
+        {path === "/wormhole" && (
+          <div id="wormholeTest" style={{ height: "1000px" }}></div>
+        )}
+      </div>
       <div
         style={{
           zIndex: "-1",
